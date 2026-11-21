@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080909">
+<title>Happy Birthday Sani 🌿</title>
+
+<style>
+* { box-sizing:border-box; }
+
+body {
+  margin:0;
+  min-height:100vh;
+  overflow-x:hidden;
+  background:radial-gradient(ellipse at top,#29200e,#090909 65%);
+  color:#f8e8b0;
+  font-family:Georgia,serif;
+  text-align:center;
+}
+
+.gold {
+  color:#f8d778;
+  text-shadow:0 0 15px #d9a82e;
+}
+
+header {
+  padding:45px 15px 15px;
+}
+
+header h1 {
+  font-size:clamp(35px,9vw,58px);
+  margin:8px 0;
+  letter-spacing:2px;
+}
+
+header p {
+  font-size:16px;
+  color:#e4d4a0;
+  letter-spacing:2px;
+}
+
+.scene {
+  position:relative;
+  padding:25px 15px 55px;
+  min-height:650px;
+}
+
+.glow {
+  position:absolute;
+  width:220px;
+  height:220px;
+  background:#d6a52c;
+  filter:blur(100px);
+  opacity:.13;
+  top:120px;
+  left:50%;
+  transform:translateX(-50%);
+  pointer-events:none;
+}
+
+.envelope-wrap {
+  position:relative;
+  z-index:2;
+  margin:45px auto 25px;
+  width:min(290px,85vw);
+  cursor:pointer;
+  perspective:1000px;
+}
+
+.envelope {
+  position:relative;
+  height:190px;
+  background:linear-gradient(140deg,#e3b94e,#815519);
+  border:2px solid #f9df91;
+  border-radius:8px;
+  box-shadow:0 0 30px #bd8a2670;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:.5s;
+}
+
+.envelope:before {
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:0;
+  height:0;
+  border-left:143px solid transparent;
+  border-right:143px solid transparent;
+  border-top:105px solid #f4d47d;
+  transform-origin:top;
+  transition:.6s;
+  z-index:3;
+  filter:drop-shadow(0 3px 3px #68430c);
+}
+
+.envelope.open:before {
+  transform:rotateX(180deg);
+}
+
+.seal {
+  position:relative;
+  z-index:4;
+  background:#38240b;
+  color:#f9d779;
+  border:2px solid #f8d778;
+  border-radius:50%;
+  width:55px;
+  height:55px;
+  display:grid;
+  place-items:center;
+  font-size:27px;
+}
+
+.envelope-label {
+  margin-top:18px;
+  font-size:15px;
+  letter-spacing:2px;
+  animation:pulse 2s infinite;
+}
+
+@keyframes pulse {
+  50% { opacity:.55; }
+}
+
+#letter {
+  display:none;
+  position:relative;
+  z-index:5;
+  max-width:480px;
+  margin:25px auto;
+  padding:30px 22px;
+  border:1px solid #d9ae48;
+  border-radius:16px;
+  background:linear-gradient(145deg,#211a0d,#100f0c);
+  box-shadow:0 0 35px #c79b3d35;
+  animation:appear 1s ease;
+}
+
+#letter.show { display:block; }
+
+@keyframes appear {
+  from { opacity:0; transform:translateY(25px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+#letter h2 {
+  font-size:29px;
+  color:#f7d77f;
+}
+
+#letter p {
+  line-height:1.8;
+  font-size:16px;
+  color:#eee0bc;
+}
+
+.dua {
+  margin-top:24px;
+  padding:18px 12px;
+  border-top:1px solid #94712e;
+  border-bottom:1px solid #94712e;
+}
+
+.arabic {
+  font-size:25px;
+  line-height:2;
+  color:#f8d778;
+  direction:rtl;
+}
+
+.dua-status {
+  margin-top:10px;
+  font-size:13px;
+  color:#dfc88e;
+  min-height:18px;
+}
+
+button {
+  border:1px solid #f8d778;
+  border-radius:30px;
+  padding:13px 24px;
+  background:linear-gradient(120deg,#d5a43c,#795019);
+  color:#160f05;
+  font-size:15px;
+  font-weight:bold;
+  cursor:pointer;
+  margin:10px 5px;
+  box-shadow:0 0 16px #d8aa4540;
+}
+
+button:active { transform:scale(.96); }
+
+.music {
+  position:relative;
+  z-index:10;
+  margin:12px auto;
+}
+
+.music small {
+  display:block;
+  color:#d8c38e;
+  margin-top:8px;
+}
+
+.leaf {
+  position:fixed;
+  top:-40px;
+  left:var(--left);
+  color:#e9bd51;
+  font-size:var(--size);
+  opacity:0;
+  pointer-events:none;
+  z-index:1;
+  text-shadow:0 0 12px #ffdf70;
+  animation:fall var(--duration) linear infinite;
+  animation-delay:var(--delay);
+}
+
+@keyframes fall {
+  0% {
+    transform:translate3d(0,-5vh,0) rotate(0deg);
+    opacity:0;
+  }
+  12% { opacity:.9; }
+  50% {
+    transform:translate3d(65px,50vh,0) rotate(240deg);
+  }
+  85% { opacity:.8; }
+  100% {
+    transform:translate3d(-50px,110vh,0) rotate(650deg);
+    opacity:0;
+  }
+}
+
+footer {
+  position:relative;
+  z-index:2;
+  padding:20px 15px 35px;
+  color:#b9a77d;
+  font-size:13px;
+  letter-spacing:1px;
+}
+
+@media(max-width:400px) {
+  .scene { padding-top:10px; }
+  #letter { padding:23px 16px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="gold" style="font-size:30px">✦ ✧ ✦</div>
+  <h1 class="gold">Happy Birthday!</h1>
+  <p>CELEBRATING YOU, SANI</p>
+  <div class="gold">❧ ━━━━━ ❧</div>
+</header>
+
+<main class="scene">
+  <div class="glow"></div>
+
+  <div style="font-size:42px;position:relative;z-index:2">
+    🌙 ✨ 🎂 ✨
+  </div>
+
+  <h2 class="gold" style="font-size:27px">
+    Dear Sani
+  </h2>
+
+  <p style="color:#e8d9b5;line-height:1.8">
+    A special day, a special person,<br>
+    and a brand-new chapter of life!
+  </p>
+
+  <div class="envelope-wrap" onclick="openLetter()">
+    <div class="envelope" id="envelope">
+      <div class="seal">S</div>
+    </div>
+    <div class="envelope-label gold">
+      💌 TAP THE GOLDEN ENVELOPE 💌
+    </div>
+  </div>
+
+  <div id="letter">
+    <div style="font-size:35px">🎉 🎂 🎉</div>
+    <h2>Happy Birthday, Sani!</h2>
+
+    <p>
+      Dear Sani,<br><br>
+      Welcome to the <span class="gold">
+      SENIOR CITIZENS CLUB!</span> 😂
+      <br><br>
+      Congratulations! You have officially
+      unlocked another level in life!
+      <br><br>
+      Remember, age is just a number.
+      But please remember to tap your
+      <span class="gold">EZ-Link card</span>
+      at traffic lights for a longer
+      pedestrian crossing timer! 🚦🤣
+      <br><br>
+      Don't worry, the knees may need
+      some maintenance, but the heart
+      must always remain young!
+      <br><br>
+      May your days be filled with happiness,
+      laughter, good health and countless
+      beautiful blessings.
+      <br><br>
+      With love to you, Nonny, and Najmy,
+      from your family ❤️
+    </p>
+
+    <div class="dua">
+      <h2>🤲 Birthday Doa</h2>
+
+      <div class="arabic">
+        اللَّهُمَّ بَارِكْ لَهُ فِي عُمْرِهِ،
+        وَارْزُقْهُ الصِّحَّةَ وَالْعَافِيَةَ،
+        وَالسَّعَادَةَ وَالرِّزْقَ الْحَلَالَ
+      </div>
+
+      <p>
+        Ya Allah, bless Sani with a long
+        life filled with iman, good health,
+        happiness and barakah.
+        <br><br>
+        Protect him and his family from
+        hardship, grant him halal sustenance,
+        peace of mind and strength in faith.
+        <br><br>
+        May every coming year bring him
+        closer to You and fill his home
+        with love, mercy and blessings.
+      </p>
+
+      <h3 class="gold">Aamiin Ya Rabbal Alamin 🤲</h3>
+
+      <button type="button" id="doaBtn" onclick="reciteDoa()">
+        🔊 Recite Doa
+      </button>
+      <div class="dua-status" id="doaStatus"></div>
+    </div>
+
+    <p class="gold" style="font-size:19px">
+      With love &amp; warm wishes ❤️
+    </p>
+
+    <p style="font-size:13px">
+      May Allah bless you always, Sani.
+    </p>
+  </div>
+
+  <div class="music">
+    <button type="button" id="musicBtn" onclick="toggleMusic()">
+      ▶ Play Birthday Music 🎶
+    </button>
+    <small>Original birthday melody · Stereo · Echo · Looping</small>
+  </div>
+</main>
+
+<footer>
+  <div class="gold" style="font-size:22px">❧ ✨ ❧</div>
+  MADE WITH LOVE FOR SANI, NONNY &amp; NAJMY
+  <br><br>
+  © A SPECIAL FAMILY BIRTHDAY SURPRISE
+</footer>
+
+<script>
+// Floating golden leaves
+const symbols = ["❧","🍃","✦","❦","✧"];
+
+for(let i=0;i<23;i++){
+  const leaf=document.createElement("div");
+  leaf.className="leaf";
+  leaf.textContent=symbols[i%symbols.length];
+
+  leaf.style.setProperty("--left",Math.random()*100+"vw");
+  leaf.style.setProperty("--size",(14+Math.random()*22)+"px");
+  leaf.style.setProperty("--duration",(9+Math.random()*12)+"s");
+  leaf.style.setProperty("--delay",(-Math.random()*20)+"s");
+
+  document.body.appendChild(leaf);
+}
+
+// Doa text & timed recitation
+const DOA_RECITATION_TEXT = [
+  "Ya Allah, bless Sani with a long life filled with iman, good health, happiness and barakah.",
+  "Protect him and his family from hardship, grant him halal sustenance, peace of mind and strength in faith.",
+  "May every coming year bring him closer to You and fill his home with love, mercy and blessings.",
+  "Aamiin Ya Rabbal Alamin."
+].join(" ");
+
+const DOA_DELAY_MS = 12000; // 12 seconds after opening the envelope
+let doaTimer = null;
+
+function setMusicVolume(level){
+  if(audio && audio.master){
+    audio.master.gain.setTargetAtTime(level, audio.currentTime, 0.15);
+  }
+}
+
+function reciteDoa(){
+  const statusEl = document.getElementById("doaStatus");
+
+  if(!("speechSynthesis" in window)){
+    if(statusEl){
+      statusEl.textContent = "Voice recitation is not supported on this browser.";
+    }
+    return;
+  }
+
+  window.speechSynthesis.cancel();
+
+  const utterance = new SpeechSynthesisUtterance(DOA_RECITATION_TEXT);
+  utterance.lang = "en-US";
+  utterance.rate = 0.92;
+  utterance.pitch = 1.0;
+
+  const voices = window.speechSynthesis.getVoices();
+  const preferredVoice =
+    voices.find(v => /en/i.test(v.lang) && /natural|google|samantha|daniel|aria/i.test(v.name)) ||
+    voices.find(v => /en/i.test(v.lang)) ||
+    null;
+
+  if(preferredVoice){
+    utterance.voice = preferredVoice;
+  }
+
+  utterance.onstart = () => {
+    setMusicVolume(0.11); // Soften background melody while doa is spoken
+    if(statusEl){
+      statusEl.textContent = "🎙️ Reciting doa...";
+    }
+  };
+
+  utterance.onend = () => {
+    setMusicVolume(0.38);
+    if(statusEl){
+      statusEl.textContent = "Doa recitation finished.";
+    }
+  };
+
+  utterance.onerror = (event) => {
+    setMusicVolume(0.38);
+    if(statusEl && event.error !== "interrupted"){
+      statusEl.textContent = "Tap 'Recite Doa' if audio speech didn't start automatically.";
+    }
+  };
+
+  window.speechSynthesis.speak(utterance);
+}
+
+// Envelope reveal + looping music + 12s delayed doa recitation
+async function openLetter(){
+  const letter=document.getElementById("letter");
+  const envelope=document.getElementById("envelope");
+  const statusEl=document.getElementById("doaStatus");
+
+  letter.classList.toggle("show");
+  envelope.classList.toggle("open");
+
+  const isOpen = letter.classList.contains("show");
+
+  if(isOpen){
+    // Ensure looping birthday music starts when envelope is clicked
+    await startMusicLoop();
+
+    // Schedule doa recitation ~12 seconds after opening
+    clearTimeout(doaTimer);
+    if(statusEl){
+      statusEl.textContent = "Doa recitation will begin in 12 seconds...";
+    }
+    doaTimer = setTimeout(() => {
+      reciteDoa();
+    }, DOA_DELAY_MS);
+
+    setTimeout(()=>{
+      letter.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+      });
+    },300);
+  } else {
+    clearTimeout(doaTimer);
+    if("speechSynthesis" in window){
+      window.speechSynthesis.cancel();
+    }
+    setMusicVolume(0.38);
+    if(statusEl){
+      statusEl.textContent = "";
+    }
+  }
+}
+
+// Original synthesized birthday melody (loops continuously via noteIndex % melody.length)
+let audio=null;
+let playing=false;
+let timer=null;
+let noteIndex=0;
+
+const melody=[
+  [523,0.25],[523,0.25],[587,0.5],
+  [523,0.5],[698,0.5],[659,1],
+  [523,0.25],[523,0.25],[587,0.5],
+  [523,0.5],[784,0.5],[698,1],
+  [523,0.25],[523,0.25],[1046,0.5],
+  [880,0.5],[698,0.5],[659,0.5],[587,1],
+  [932,0.25],[932,0.25],[880,0.5],
+  [698,0.5],[784,0.5],[698,1]
+];
+
+let nextTime=0;
+
+function setupAudio(){
+  if(audio) return;
+
+  const AC=window.AudioContext||window.webkitAudioContext;
+  if(!AC) return;
+
+  audio=new AC();
+
+  const master=audio.createGain();
+  const delay=audio.createDelay(1);
+  const feedback=audio.createGain();
+  const echoGain=audio.createGain();
+
+  const panner=audio.createStereoPanner();
+
+  master.gain.value=0.38;
+  delay.delayTime.value=0.28;
+  feedback.gain.value=0.28;
+  echoGain.gain.value=0.22;
+
+  master.connect(panner);
+  panner.connect(audio.destination);
+
+  master.connect(delay);
+  delay.connect(feedback);
+  feedback.connect(delay);
+  delay.connect(echoGain);
+  echoGain.connect(panner);
+
+  audio.master=master;
+  audio.panner=panner;
+}
+
+function playNote(freq,duration,time){
+  const osc=audio.createOscillator();
+  const gain=audio.createGain();
+
+  osc.type="sine";
+  osc.frequency.setValueAtTime(freq,time);
+
+  gain.gain.setValueAtTime(0,time);
+  gain.gain.linearRampToValueAtTime(0.22,time+0.025);
+  gain.gain.exponentialRampToValueAtTime(
+    0.001,time+duration
+  );
+
+  osc.connect(gain);
+  gain.connect(audio.master);
+
+  osc.start(time);
+  osc.stop(time+duration+0.05);
+}
+
+function scheduleMusic(){
+  if(!playing) return;
+
+  while(nextTime<audio.currentTime+0.15){
+    const [freq,duration]=melody[noteIndex];
+
+    playNote(freq,duration*0.85,nextTime);
+
+    audio.panner.pan.setValueAtTime(
+      Math.sin(noteIndex*0.4)*0.65,
+      nextTime
+    );
+
+    nextTime+=duration*0.42;
+    noteIndex=(noteIndex+1)%melody.length;
+  }
+
+  timer=setTimeout(scheduleMusic,60);
+}
+
+async function startMusicLoop(){
+  const btn=document.getElementById("musicBtn");
+  setupAudio();
+
+  if(!audio){
+    if(btn) btn.textContent="Audio unavailable";
+    return;
+  }
+
+  if(audio.state === "suspended"){
+    await audio.resume();
+  }
+
+  if(!playing){
+    playing=true;
+    nextTime=Math.max(nextTime, audio.currentTime+0.05);
+    scheduleMusic();
+  }
+
+  if(btn){
+    btn.textContent="❚❚ Pause Birthday Music 🎶";
+  }
+}
+
+async function pauseMusicLoop(){
+  const btn=document.getElementById("musicBtn");
+  playing=false;
+  clearTimeout(timer);
+
+  if(audio && audio.state === "running"){
+    await audio.suspend();
+  }
+
+  if(btn){
+    btn.textContent="▶ Play Birthday Music 🎶";
+  }
+}
+
+async function toggleMusic(){
+  const btn=document.getElementById("musicBtn");
+
+  setupAudio();
+  if(!audio) {
+    btn.textContent="Audio unavailable";
+    return;
+  }
+
+  if(playing){
+    await pauseMusicLoop();
+  }else{
+    await startMusicLoop();
+  }
+}
+
+if("speechSynthesis" in window){
+  window.speechSynthesis.getVoices();
+}
+</script>
+
+</body>
+</html>
