@@ -59,6 +59,15 @@ header p {
   pointer-events:none;
 }
 
+#envelopeSection {
+  position:relative;
+  z-index:2;
+}
+
+#envelopeSection.hidden {
+  display:none;
+}
+
 .envelope-wrap {
   position:relative;
   z-index:2;
@@ -131,7 +140,7 @@ header p {
   position:relative;
   z-index:5;
   max-width:480px;
-  margin:25px auto;
+  margin:15px auto 25px;
   padding:30px 22px;
   border:1px solid #d9ae48;
   border-radius:16px;
@@ -158,6 +167,18 @@ header p {
   color:#eee0bc;
 }
 
+.readable-para {
+  padding:8px 10px;
+  border-radius:10px;
+  transition:background-color .35s ease, box-shadow .35s ease, transform .35s ease;
+}
+
+.readable-para.active-para {
+  background:rgba(248, 215, 120, 0.12);
+  box-shadow:inset 3px 0 0 #f8d778;
+  color:#fff4cf;
+}
+
 .dua {
   margin-top:24px;
   padding:18px 12px;
@@ -172,7 +193,15 @@ header p {
   direction:rtl;
 }
 
-.dua-status {
+.reader-controls {
+  margin-top:14px;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:6px;
+}
+
+.reading-status {
   margin-top:10px;
   font-size:13px;
   color:#dfc88e;
@@ -182,17 +211,22 @@ header p {
 button {
   border:1px solid #f8d778;
   border-radius:30px;
-  padding:13px 24px;
+  padding:12px 20px;
   background:linear-gradient(120deg,#d5a43c,#795019);
   color:#160f05;
-  font-size:15px;
+  font-size:14px;
   font-weight:bold;
   cursor:pointer;
-  margin:10px 5px;
+  margin:6px 4px;
   box-shadow:0 0 16px #d8aa4540;
 }
 
 button:active { transform:scale(.96); }
+
+button.secondary {
+  background:linear-gradient(120deg,#3b2c12,#1c1509);
+  color:#f8e8b0;
+}
 
 .music {
   position:relative;
@@ -264,25 +298,27 @@ footer {
 <main class="scene">
   <div class="glow"></div>
 
-  <div style="font-size:42px;position:relative;z-index:2">
-    🌙 ✨ 🎂 ✨
-  </div>
-
-  <h2 class="gold" style="font-size:27px">
-    Dear Sani
-  </h2>
-
-  <p style="color:#e8d9b5;line-height:1.8">
-    A special day, a special person,<br>
-    and a brand-new chapter of life!
-  </p>
-
-  <div class="envelope-wrap" onclick="openLetter()">
-    <div class="envelope" id="envelope">
-      <div class="seal">S</div>
+  <div id="envelopeSection">
+    <div style="font-size:42px;position:relative;z-index:2">
+      🌙 ✨ 🎂 ✨
     </div>
-    <div class="envelope-label gold">
-      💌 TAP THE GOLDEN ENVELOPE 💌
+
+    <h2 class="gold" style="font-size:27px">
+      Dear Sani
+    </h2>
+
+    <p style="color:#e8d9b5;line-height:1.8">
+      A special day, a special person,<br>
+      and a brand-new chapter of life!
+    </p>
+
+    <div class="envelope-wrap" onclick="openLetter()">
+      <div class="envelope" id="envelope">
+        <div class="seal">S</div>
+      </div>
+      <div class="envelope-label gold">
+        💌 TAP THE GOLDEN ENVELOPE 💌
+      </div>
     </div>
   </div>
 
@@ -290,20 +326,24 @@ footer {
     <div style="font-size:35px">🎉 🎂 🎉</div>
     <h2>Happy Birthday, Sani!</h2>
 
-    <p>
+    <p class="readable-para" data-speak="Dear Sani, welcome to the Senior Citizens Club! Congratulations! You have officially unlocked another level in life!">
       Dear Sani,<br><br>
       Welcome to the <span class="gold">
       SENIOR CITIZENS CLUB!</span> 😂
       <br><br>
       Congratulations! You have officially
       unlocked another level in life!
-      <br><br>
+    </p>
+
+    <p class="readable-para" data-speak="Remember, age is just a number. But please remember to tap your EZ-Link card at traffic lights for a longer pedestrian crossing timer!">
       Remember, age is just a number.
       But please remember to tap your
       <span class="gold">EZ-Link card</span>
       at traffic lights for a longer
       pedestrian crossing timer! 🚦🤣
-      <br><br>
+    </p>
+
+    <p class="readable-para" data-speak="Don't worry, the knees may need some maintenance, but the heart must always remain young! May your days be filled with happiness, laughter, good health and countless beautiful blessings. With love to you, Nonny, and Najmy, from your family.">
       Don't worry, the knees may need
       some maintenance, but the heart
       must always remain young!
@@ -325,26 +365,37 @@ footer {
         وَالسَّعَادَةَ وَالرِّزْقَ الْحَلَالَ
       </div>
 
-      <p>
+      <p class="readable-para" data-speak="Ya Allah, bless Sani with a long life filled with iman, good health, happiness and barakah.">
         Ya Allah, bless Sani with a long
         life filled with iman, good health,
         happiness and barakah.
-        <br><br>
+      </p>
+
+      <p class="readable-para" data-speak="Protect him and his family from hardship, grant him halal sustenance, peace of mind and strength in faith.">
         Protect him and his family from
         hardship, grant him halal sustenance,
         peace of mind and strength in faith.
-        <br><br>
+      </p>
+
+      <p class="readable-para" data-speak="May every coming year bring him closer to You and fill his home with love, mercy and blessings.">
         May every coming year bring him
         closer to You and fill his home
         with love, mercy and blessings.
       </p>
 
-      <h3 class="gold">Aamiin Ya Rabbal Alamin 🤲</h3>
+      <h3 class="gold readable-para" data-speak="Aamiin Ya Rabbal Alamin.">
+        Aamiin Ya Rabbal Alamin 🤲
+      </h3>
 
-      <button type="button" id="doaBtn" onclick="reciteDoa()">
-        🔊 Recite Doa
-      </button>
-      <div class="dua-status" id="doaStatus"></div>
+      <div class="reader-controls">
+        <button type="button" id="readToggleBtn" onclick="toggleReading()">
+          ⏸ Pause Reading
+        </button>
+        <button type="button" class="secondary" id="scrollToggleBtn" onclick="toggleAutoScroll()">
+          📜 Auto-Scroll: ON
+        </button>
+      </div>
+      <div class="reading-status" id="readingStatus"></div>
     </div>
 
     <p class="gold" style="font-size:19px">
@@ -360,7 +411,7 @@ footer {
     <button type="button" id="musicBtn" onclick="toggleMusic()">
       ▶ Play Birthday Music 🎶
     </button>
-    <small>Original birthday melody · Stereo · Echo · Looping</small>
+    <small>Boosted mobile melody · Stereo · Echo · Looping</small>
   </div>
 </main>
 
@@ -388,39 +439,106 @@ for(let i=0;i<23;i++){
   document.body.appendChild(leaf);
 }
 
-// Doa text & timed recitation
-const DOA_RECITATION_TEXT = [
-  "Ya Allah, bless Sani with a long life filled with iman, good health, happiness and barakah.",
-  "Protect him and his family from hardship, grant him halal sustenance, peace of mind and strength in faith.",
-  "May every coming year bring him closer to You and fill his home with love, mercy and blessings.",
-  "Aamiin Ya Rabbal Alamin."
-].join(" ");
+// Audio & paragraph-by-paragraph auto-reader + auto-scroller
+const NORMAL_MUSIC_GAIN = 0.78;
+const DUCKED_MUSIC_GAIN = 0.22;
 
-const DOA_DELAY_MS = 12000; // 12 seconds after opening the envelope
-let doaTimer = null;
+let audio=null;
+let playing=false;
+let timer=null;
+let noteIndex=0;
+let nextTime=0;
+
+let readingActive=false;
+let autoScrollEnabled=true;
+let currentParaIndex=0;
+let readSessionId=0;
+let userScrolledRecently=false;
+let userScrollTimeout=null;
+
+const paras = Array.from(document.querySelectorAll(".readable-para"));
+
+window.addEventListener("scroll", () => {
+  if(!readingActive) return;
+  userScrolledRecently = true;
+  clearTimeout(userScrollTimeout);
+  userScrollTimeout = setTimeout(() => {
+    userScrolledRecently = false;
+  }, 2200);
+}, { passive: true });
 
 function setMusicVolume(level){
   if(audio && audio.master){
-    audio.master.gain.setTargetAtTime(level, audio.currentTime, 0.15);
+    audio.master.gain.setTargetAtTime(level, audio.currentTime, 0.12);
   }
 }
 
-function reciteDoa(){
-  const statusEl = document.getElementById("doaStatus");
+function clearHighlights(){
+  paras.forEach(p => p.classList.remove("active-para"));
+}
 
-  if(!("speechSynthesis" in window)){
-    if(statusEl){
-      statusEl.textContent = "Voice recitation is not supported on this browser.";
-    }
+function updateReadUI(statusText){
+  const readBtn = document.getElementById("readToggleBtn");
+  const statusEl = document.getElementById("readingStatus");
+  if(readBtn){
+    readBtn.textContent = readingActive ? "⏸ Pause Reading" : "🔊 Read Message & Doa";
+  }
+  if(statusEl && statusText !== undefined){
+    statusEl.textContent = statusText;
+  }
+}
+
+function updateScrollUI(){
+  const scrollBtn = document.getElementById("scrollToggleBtn");
+  if(scrollBtn){
+    scrollBtn.textContent = autoScrollEnabled ? "📜 Auto-Scroll: ON" : "📜 Auto-Scroll: OFF";
+  }
+}
+
+function toggleAutoScroll(){
+  autoScrollEnabled = !autoScrollEnabled;
+  updateScrollUI();
+  if(autoScrollEnabled && readingActive && paras[currentParaIndex]){
+    paras[currentParaIndex].scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+}
+
+function scrollToParagraph(el){
+  if(!autoScrollEnabled || !el || userScrolledRecently) return;
+  el.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+function speakParagraph(index, sessionId){
+  if(sessionId !== readSessionId || !readingActive) return;
+
+  if(index >= paras.length){
+    readingActive = false;
+    clearHighlights();
+    setMusicVolume(NORMAL_MUSIC_GAIN);
+    updateReadUI("Finished reading all paragraphs.");
     return;
   }
 
-  window.speechSynthesis.cancel();
+  if(!("speechSynthesis" in window)){
+    readingActive = false;
+    setMusicVolume(NORMAL_MUSIC_GAIN);
+    updateReadUI("Voice reading is not supported on this browser.");
+    return;
+  }
 
-  const utterance = new SpeechSynthesisUtterance(DOA_RECITATION_TEXT);
+  currentParaIndex = index;
+  clearHighlights();
+
+  const el = paras[index];
+  el.classList.add("active-para");
+  scrollToParagraph(el);
+
+  const textToRead = (el.dataset.speak || el.textContent || "").trim();
+  const utterance = new SpeechSynthesisUtterance(textToRead);
   utterance.lang = "en-US";
-  utterance.rate = 0.92;
+  utterance.rate = 0.94;
   utterance.pitch = 1.0;
+  utterance.volume = 1.0;
 
   const voices = window.speechSynthesis.getVoices();
   const preferredVoice =
@@ -433,77 +551,94 @@ function reciteDoa(){
   }
 
   utterance.onstart = () => {
-    setMusicVolume(0.11); // Soften background melody while doa is spoken
-    if(statusEl){
-      statusEl.textContent = "🎙️ Reciting doa...";
-    }
+    if(sessionId !== readSessionId) return;
+    setMusicVolume(DUCKED_MUSIC_GAIN);
+    updateReadUI(`🎙️ Reading paragraph ${index + 1} of ${paras.length}...`);
   };
 
   utterance.onend = () => {
-    setMusicVolume(0.38);
-    if(statusEl){
-      statusEl.textContent = "Doa recitation finished.";
-    }
+    if(sessionId !== readSessionId || !readingActive) return;
+    setTimeout(() => {
+      if(sessionId === readSessionId && readingActive){
+        speakParagraph(index + 1, sessionId);
+      }
+    }, 350);
   };
 
   utterance.onerror = (event) => {
-    setMusicVolume(0.38);
-    if(statusEl && event.error !== "interrupted"){
-      statusEl.textContent = "Tap 'Recite Doa' if audio speech didn't start automatically.";
-    }
+    if(sessionId !== readSessionId) return;
+    if(event.error === "interrupted" || event.error === "canceled") return;
+    readingActive = false;
+    setMusicVolume(NORMAL_MUSIC_GAIN);
+    updateReadUI("Tap 'Read Message & Doa' if speech didn't start automatically.");
   };
 
   window.speechSynthesis.speak(utterance);
 }
 
-// Envelope reveal + looping music + 12s delayed doa recitation
-async function openLetter(){
-  const letter=document.getElementById("letter");
-  const envelope=document.getElementById("envelope");
-  const statusEl=document.getElementById("doaStatus");
+function startReadingFrom(startIndex = 0){
+  readSessionId += 1;
+  const sessionId = readSessionId;
+  readingActive = true;
 
-  letter.classList.toggle("show");
-  envelope.classList.toggle("open");
+  if("speechSynthesis" in window){
+    window.speechSynthesis.cancel();
+  }
 
-  const isOpen = letter.classList.contains("show");
-
-  if(isOpen){
-    // Ensure looping birthday music starts when envelope is clicked
-    await startMusicLoop();
-
-    // Schedule doa recitation ~12 seconds after opening
-    clearTimeout(doaTimer);
-    if(statusEl){
-      statusEl.textContent = "Doa recitation will begin in 12 seconds...";
+  updateReadUI("Preparing voice reading...");
+  setTimeout(() => {
+    if(sessionId === readSessionId && readingActive){
+      speakParagraph(startIndex, sessionId);
     }
-    doaTimer = setTimeout(() => {
-      reciteDoa();
-    }, DOA_DELAY_MS);
+  }, 450);
+}
 
-    setTimeout(()=>{
-      letter.scrollIntoView({
-        behavior:"smooth",
-        block:"start"
-      });
-    },300);
+function stopReading(resetIndex = false){
+  readSessionId += 1;
+  readingActive = false;
+  if(resetIndex){
+    currentParaIndex = 0;
+  }
+  if("speechSynthesis" in window){
+    window.speechSynthesis.cancel();
+  }
+  clearHighlights();
+  setMusicVolume(NORMAL_MUSIC_GAIN);
+  updateReadUI(resetIndex ? "" : "Reading paused.");
+}
+
+function toggleReading(){
+  if(readingActive){
+    stopReading(false);
   } else {
-    clearTimeout(doaTimer);
-    if("speechSynthesis" in window){
-      window.speechSynthesis.cancel();
-    }
-    setMusicVolume(0.38);
-    if(statusEl){
-      statusEl.textContent = "";
-    }
+    const nextIdx = currentParaIndex >= paras.length ? 0 : currentParaIndex;
+    startReadingFrom(nextIdx);
   }
 }
 
-// Original synthesized birthday melody (loops continuously via noteIndex % melody.length)
-let audio=null;
-let playing=false;
-let timer=null;
-let noteIndex=0;
+// Envelope reveal -> hide envelope, show full letter, loop music, auto-read & auto-scroll
+async function openLetter(){
+  const letter=document.getElementById("letter");
+  const envelope=document.getElementById("envelope");
+  const envelopeSection=document.getElementById("envelopeSection");
 
+  envelope.classList.add("open");
+  await startMusicLoop();
+
+  setTimeout(() => {
+    if(envelopeSection){
+      envelopeSection.classList.add("hidden");
+    }
+    letter.classList.add("show");
+    letter.scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+    startReadingFrom(0);
+  }, 420);
+}
+
+// Synthesized birthday melody with mobile speaker boost & dynamics compression
 const melody=[
   [523,0.25],[523,0.25],[587,0.5],
   [523,0.5],[698,0.5],[659,1],
@@ -515,8 +650,6 @@ const melody=[
   [698,0.5],[784,0.5],[698,1]
 ];
 
-let nextTime=0;
-
 function setupAudio(){
   if(audio) return;
 
@@ -526,19 +659,26 @@ function setupAudio(){
   audio=new AC();
 
   const master=audio.createGain();
+  const compressor=audio.createDynamicsCompressor();
   const delay=audio.createDelay(1);
   const feedback=audio.createGain();
   const echoGain=audio.createGain();
-
   const panner=audio.createStereoPanner();
 
-  master.gain.value=0.38;
-  delay.delayTime.value=0.28;
-  feedback.gain.value=0.28;
-  echoGain.gain.value=0.22;
+  compressor.threshold.value = -14;
+  compressor.knee.value = 18;
+  compressor.ratio.value = 6;
+  compressor.attack.value = 0.005;
+  compressor.release.value = 0.15;
+
+  master.gain.value = NORMAL_MUSIC_GAIN;
+  delay.delayTime.value = 0.28;
+  feedback.gain.value = 0.25;
+  echoGain.gain.value = 0.2;
 
   master.connect(panner);
-  panner.connect(audio.destination);
+  panner.connect(compressor);
+  compressor.connect(audio.destination);
 
   master.connect(delay);
   delay.connect(feedback);
@@ -551,6 +691,7 @@ function setupAudio(){
 }
 
 function playNote(freq,duration,time){
+  // Main lead tone
   const osc=audio.createOscillator();
   const gain=audio.createGain();
 
@@ -558,7 +699,7 @@ function playNote(freq,duration,time){
   osc.frequency.setValueAtTime(freq,time);
 
   gain.gain.setValueAtTime(0,time);
-  gain.gain.linearRampToValueAtTime(0.22,time+0.025);
+  gain.gain.linearRampToValueAtTime(0.42,time+0.02);
   gain.gain.exponentialRampToValueAtTime(
     0.001,time+duration
   );
@@ -568,6 +709,25 @@ function playNote(freq,duration,time){
 
   osc.start(time);
   osc.stop(time+duration+0.05);
+
+  // Subtle warm triangle harmonic so phone speakers project more clearly
+  const warmOsc=audio.createOscillator();
+  const warmGain=audio.createGain();
+
+  warmOsc.type="triangle";
+  warmOsc.frequency.setValueAtTime(freq,time);
+
+  warmGain.gain.setValueAtTime(0,time);
+  warmGain.gain.linearRampToValueAtTime(0.16,time+0.025);
+  warmGain.gain.exponentialRampToValueAtTime(
+    0.001,time+duration
+  );
+
+  warmOsc.connect(warmGain);
+  warmGain.connect(audio.master);
+
+  warmOsc.start(time);
+  warmOsc.stop(time+duration+0.05);
 }
 
 function scheduleMusic(){
@@ -644,6 +804,7 @@ async function toggleMusic(){
   }
 }
 
+updateScrollUI();
 if("speechSynthesis" in window){
   window.speechSynthesis.getVoices();
 }
